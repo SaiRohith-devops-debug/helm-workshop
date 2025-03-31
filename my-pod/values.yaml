@@ -1,0 +1,7 @@
+appName: My-pod
+image:
+  name: ubuntuk8s/helloworld
+  tag: latest 
+nodePort: 30000
+type: NodePort  
+port: 80

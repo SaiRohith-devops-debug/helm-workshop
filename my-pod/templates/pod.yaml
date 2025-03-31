@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Values.appName }}
+  labels:
+    app: {{ .Values.appName }}
+  annotations:
+    description: "This pod runs the web server"
+spec:
+  restartPolicy: Always
+  containers:
+    - name: {{ .Values.appName }}
+      image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+      ports:
+        - containerPort: {{ .Values.port }}

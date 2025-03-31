@@ -1,0 +1,64 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: fe-{{ .Values.appName }}
+  namespace: qa
+  labels:
+    app: fe-{{ .Values.appName }}
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: {{ .Values.port }}		# Port exposed within the cluster
+      targetPort: {{ .Values.port }}	# Port on the pods
+  selector:
+    app: fe-{{ .Values.appName }}
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: be-{{ .Values.appName }}
+  namespace: qa
+  labels:
+    app: be-{{ .Values.appName }}
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: {{ .Values.port }}		# Port exposed within the cluster
+      targetPort: {{ .Values.port }}	# Port on the pods
+  selector:
+    app: be-{{ .Values.appName }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: be-{{ .Values.appName }}-service
+  namespace: qa
+  labels:
+    app: be-{{ .Values.appName }}
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: {{ .Values.port }}		# Port exposed within the cluster
+      targetPort: {{ .Values.port }}	# Port on the pods
+  selector:
+    app: be-{{ .Values.appName }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.appName }}-service
+  namespace: qa
+  labels:
+    app: {{ .Values.appName }}
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: {{ .Values.port }}		# Port exposed within the cluster
+      targetPort: {{ .Values.port }}	# Port on the pods
+  selector:
+    app: {{ .Values.appName }}
